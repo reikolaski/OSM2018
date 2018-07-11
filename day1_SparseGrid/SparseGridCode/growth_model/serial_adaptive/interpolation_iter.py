@@ -36,8 +36,11 @@ def sparse_grid_iter(n_agents, iDepth, valold):
     
     #file=open("comparison1.txt", 'w')
     for iK in range(refinement_level):
-        grid.setSurplusRefinement(fTol, 1, "fds")
-        aPoints=grid.getNeededPoints()
+        if iK == 0:
+            aPoints=grid.getPoints()
+        else:
+            grid.setSurplusRefinement(fTol, 1, "fds")
+            aPoints=grid.getNeededPoints()
         iNumP1=aPoints.shape[0]
         aVals=np.empty([iNumP1, 1])
         for iI in range(iNumP1):
