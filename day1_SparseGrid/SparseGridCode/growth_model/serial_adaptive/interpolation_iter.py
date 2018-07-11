@@ -45,10 +45,10 @@ def sparse_grid_iter(n_agents, iDepth, valold):
         aVals=np.empty([iNumP1, 1])
         for iI in range(iNumP1):
             aVals[iI]=solveriter.iterate(aPoints[iI], n_agents, valold)[0]
-        valold = grid
             v=aVals[iI]*np.ones((1,1))
             to_print=np.hstack((aPoints[iI].reshape(1,n_agents), v))
             np.savetxt(file, to_print, fmt='%2.16f')
+        valold = grid
         grid.loadNeededPoints(aVals)
 
     file.close()
