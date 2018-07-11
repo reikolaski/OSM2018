@@ -45,9 +45,10 @@ def sparse_grid_iter(n_agents, iDepth, valold):
             v=aVals[iI]*np.ones((1,1))
             to_print=np.hstack((aPoints[iI].reshape(1,n_agents), v))
             np.savetxt(file, to_print, fmt='%2.16f')
-        
-    #file.close()
-    grid.loadNeededPoints(aVals)
+        grid.loadNeededPoints(aVals)
+
+    file.close()
+    
     
     f=open("grid_iter.txt", 'w')
     np.savetxt(f, aPoints, fmt='% 2.16f')
