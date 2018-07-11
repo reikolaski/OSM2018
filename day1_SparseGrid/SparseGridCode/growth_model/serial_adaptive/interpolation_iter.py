@@ -35,11 +35,11 @@ def sparse_grid_iter(n_agents, iDepth, valold):
     grid.setDomainTransform(ranges)
     
     file=open("comparison1.txt", 'w')
-    # for iK in range(refinement_level):
-    #     grid.setSurplusRefinement(fTol, 1, "fds")
-    #     aPoints=grid.getPoints()
-    #     iNumP1=aPoints.shape[0]
-    #     aVals=np.empty([iNumP1, 1])
+    #for iK in range(refinement_level):
+        #grid.setSurplusRefinement(fTol, 1, "fds")
+    aPoints=grid.getPoints()
+    iNumP1=aPoints.shape[0]
+    aVals=np.empty([iNumP1, 1])
     for iI in range(iNumP1):
         aVals[iI]=solveriter.iterate(aPoints[iI], n_agents, valold)[0]
         v=aVals[iI]*np.ones((1,1))
