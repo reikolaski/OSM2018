@@ -20,23 +20,27 @@ def sparse_grid_iter(n_agents, iDepth, valold):
     
     grid  = TasmanianSG.TasmanianSparseGrid()
 
-    # k_range=np.array([k_bar, k_up])
+    k_range=np.array([k_bar, k_up])
 
-    # ranges=np.empty((n_agents, 2))
+    ranges=np.empty((n_agents, 2))
 
 
-    # for i in range(n_agents):
-    #     ranges[i]=k_range
+    for i in range(n_agents):
+        ranges[i]=k_range
 
-    # iDim=n_agents
+    iDim=n_agents
 
-    # grid.makeLocalPolynomialGrid(iDim, iOut, iDepth, which_basis, "localp")
-    # grid.setDomainTransform(ranges)
-    grid=valold
+    grid.makeLocalPolynomialGrid(iDim, iOut, iDepth, which_basis, "localp")
+    grid.setDomainTransform(ranges)
+
     grid.setSurplusRefinement(fTol, 1, "fds")
     aPoints=grid.getNeededPoints()
     iNumP1=aPoints.shape[0]
     aVals=np.empty([iNumP1, 1])
+
+    # aPoints=grid.getPoints()
+    # iNumP1=aPoints.shape[0]
+    # aVals=np.empty([iNumP1, 1])
     
     file=open("comparison1.txt", 'w')
     for iI in range(iNumP1):
