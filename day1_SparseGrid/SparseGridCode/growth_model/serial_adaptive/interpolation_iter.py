@@ -16,28 +16,25 @@ import nonlinear_solver_iterate as solveriter
 
 #======================================================================
 
-def sparse_grid_iter(n_agents, iDepth, valold, i):
+def sparse_grid_iter(n_agents, iDepth, valold):
     
     grid  = TasmanianSG.TasmanianSparseGrid()
-    if i == 0:
-        k_range=np.array([k_bar, k_up])
-        ranges=np.empty((n_agents, 2))
 
-        for i in range(n_agents):
-            ranges[i]=k_range
+    k_range=np.array([k_bar, k_up])
 
-        iDim=n_agents
+    ranges=np.empty((n_agents, 2))
 
-        grid.makeLocalPolynomialGrid(iDim, iOut, iDepth, which_basis, "localp")
-        grid.setDomainTransform(ranges)
 
-        aPoints=grid.getPoints()
+    for i in range(n_agents):
+        ranges[i]=k_range
 
-    else:
-        grid = valold
-        grid.setSurplusRefinement(fTol, 1, "fds")
-        aPoints=grid.getNeededPoints()
+    iDim=n_agents
+    iOut=1
 
+    grid.makeLocalPolynomialGrid(iDim, iOut, iDepth, which_basis, "localp")
+    grid.setDomainTransform(ranges)
+
+    aPoints=grid.getPoints()
     iNumP1=aPoints.shape[0]
     aVals=np.empty([iNumP1, 1])
     
