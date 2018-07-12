@@ -43,7 +43,7 @@ valold=valnew
 
 for i in range(numstart, numits):
     valnew=TasmanianSG.TasmanianSparseGrid()
-    valnew=interpol_iter.sparse_grid_iter(n_agents, iDepth, valold)
+    valnew=interpol_iter.sparse_grid_iter(n_agents, iDepth, valold, i)
     valold=TasmanianSG.TasmanianSparseGrid()
     valold=valnew
     valnew.write("valnew_1." + str(i+1) + ".txt")
