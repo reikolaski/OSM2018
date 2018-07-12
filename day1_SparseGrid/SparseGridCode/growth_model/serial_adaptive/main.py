@@ -38,8 +38,8 @@ if (numstart==0):
 else:
     valnew.read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
     
-#valold=TasmanianSG.TasmanianSparseGrid()
-#valold=valnew
+valold=TasmanianSG.TasmanianSparseGrid()
+valold=valnew
 
 #for i in range(numstart, numits):
 valnew=TasmanianSG.TasmanianSparseGrid()
