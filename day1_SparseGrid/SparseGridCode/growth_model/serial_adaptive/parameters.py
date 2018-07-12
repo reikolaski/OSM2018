@@ -22,7 +22,7 @@ refinement_level = 5
 
 # control of iterations
 numstart = 0   # which is iteration to start (numstart = 0: start from scratch, number=/0: restart)
-numits = 1    # which is the iteration to end
+numits = 10    # which is the iteration to end
 
 # How many random points for computing the errors
 No_samples = 1000
