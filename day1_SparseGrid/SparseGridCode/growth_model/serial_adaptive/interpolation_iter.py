@@ -33,8 +33,10 @@ def sparse_grid_iter(n_agents, iDepth, valold):
     grid.makeLocalPolynomialGrid(iDim, iOut, iDepth, which_basis, "localp")
     grid.setDomainTransform(ranges)
 
+    grid=valold
+
     grid.setSurplusRefinement(fTol, 1, "fds")
-    aPoints=valold.getNeededPoints()
+    aPoints=grid.getNeededPoints()
     iNumP1=aPoints.shape[0]
     aVals=np.empty([iNumP1, 1])
     
