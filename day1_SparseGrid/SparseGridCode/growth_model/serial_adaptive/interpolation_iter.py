@@ -34,7 +34,7 @@ def sparse_grid_iter(n_agents, iDepth, valold):
     grid.setDomainTransform(ranges)
     
     file=open("comparison1.txt", 'w')
-    for iK in range(numstart, numits):
+    for iK in range(refinement_level):
         if iK == 0:
             aPoints=grid.getPoints()
         else:
