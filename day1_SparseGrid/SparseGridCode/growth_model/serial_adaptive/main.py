@@ -38,15 +38,15 @@ if (numstart==0):
 else:
     valnew.read("valnew_1." + str(numstart) + ".txt")  #write file to disk for restart
     
-valold=TasmanianSG.TasmanianSparseGrid()
-valold=valnew
+#valold=TasmanianSG.TasmanianSparseGrid()
+#valold=valnew
 
 #for i in range(numstart, numits):
-    valnew=TasmanianSG.TasmanianSparseGrid()
-    valnew=interpol_iter.sparse_grid_iter(n_agents, iDepth, valold)
+valnew=TasmanianSG.TasmanianSparseGrid()
+valnew=interpol_iter.sparse_grid_iter(n_agents, iDepth, valold)
     #valold=TasmanianSG.TasmanianSparseGrid()
     #valold=valnew
-    valnew.write("valnew_1." + str(i+1) + ".txt")
+	#valnew.write("valnew_1." + str(i+1) + ".txt")
     
 #======================================================================
 print "==============================================================="
