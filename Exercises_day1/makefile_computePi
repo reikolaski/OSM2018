@@ -1,0 +1,7 @@
+all: computePi.cpp.exec
+
+computePi.cpp.exec : computePi.cpp
+	g++ computePi.cpp -o computePi.cpp.exec
+
+clean :
+	rm -f *.exec

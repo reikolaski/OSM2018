@@ -12,5 +12,5 @@ double computePi(int n)
 
 int main()
 {
-    std::cout << computePi(1000) << std::endl;
+    std::cout << computePi(100000) << std::endl;
 }
