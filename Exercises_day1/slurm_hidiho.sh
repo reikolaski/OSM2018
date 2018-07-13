@@ -7,3 +7,5 @@
 #SBATCH --ntasks=1
 
 #SBATCH --partition=sandyb
+
+./hidiho.exec
