@@ -26,5 +26,5 @@ int main()
     printf("Pi: %f\n", computePi(1000));    
     printf("Pi: %f\n", computePi(10000));
     printf("Pi: %f\n", computePi(10000000));
-
+    return 0;
 } 
