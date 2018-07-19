@@ -44,7 +44,7 @@ void normalize_vector_omp(double *v, int n)
     norm = sqrt(norm);
 
     // normalize v
-    #pragma omp parallel for
+    #pragma omp parallel for 
     for(int i=0; i<n; i++)
         v[i] /= norm;
 

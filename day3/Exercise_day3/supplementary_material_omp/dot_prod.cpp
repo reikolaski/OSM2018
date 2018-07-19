@@ -20,8 +20,16 @@ int main(void){
     double time = -omp_get_wtime();
     double dot=0.;
 
-    for(int i=0; i<N; i++) {
-        dot += a[i] * b[i];
+    int i;
+    #pragma omp parallel \
+	shared(a, b) \
+	private(i) \
+	reduction(+:dot)
+    {
+       #pragma omp for
+       for(i=0; i<N; i++) {
+           dot += a[i] * b[i];
+       }
     }
     time += omp_get_wtime();
 
