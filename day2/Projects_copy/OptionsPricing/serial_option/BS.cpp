@@ -45,7 +45,6 @@ double call_price_European(const int& num_sims, const double& S, const double& K
     double gauss_bm = gaussian_box_muller();
     S_cur = S_adjust * exp(sqrt(v*v*T)*gauss_bm);
     payoff_sum += std::max(S_cur - K, 0.0);
-    //std::cout << S_cur << std::endl;
   }
 
   return (payoff_sum / static_cast<double>(num_sims)) * exp(-r*T);
@@ -72,21 +71,23 @@ double put_price_European(const int& num_sims, const double& S, const double& K,
 // Pricing a Asian vanilla call option with a Monte Carlo method
 
 double call_price_Asian(const int& num_sims, const double& S, const double& K, const double& r, const double& v, const double& T, const int& m) {
-  double S_adjust = S * exp((T/m)*(r-0.5*v*v));
-  double S_cur = 0.0;
-  double S_bar = 0.0;
+  double adjust = exp((T/m)*(r-0.5*v*v));
+  double S_tj1;
+  double S_bar;
+  double S_tj;
   double payoff_sum = 0.0;
 
   for (int i=0; i<num_sims; i++) {
+    S_bar = 0.0;
+    S_tj1 = S;
     for (int j=0; j<m; j++) {
       double gauss_bm = gaussian_box_muller();
-      S_cur = S_adjust * exp(sqrt(v*v*(T/m))*gauss_bm);
-      S_bar += S_cur;
-      S_adjust = S_cur;
+      S_tj = adjust * S_tj1 * exp(sqrt(v*v*(T/m))*gauss_bm);
+      S_bar += S_tj;
+      S_tj1 = S_tj;
     }
-    //std::cout << S_cur << std::endl;
     S_bar /= m;
-    payoff_sum += std::max(K - S_bar, 0.0);
+    payoff_sum += std::max(S_bar - K, 0.0);
   }
 
   return (payoff_sum / static_cast<double>(num_sims)) * exp(-r*T);
@@ -96,17 +97,20 @@ double call_price_Asian(const int& num_sims, const double& S, const double& K, c
 // Pricing a Asian vanilla put option with a Monte Carlo method
 
 double put_price_Asian(const int& num_sims, const double& S, const double& K, const double& r, const double& v, const double& T, const int& m) {
-  double S_adjust = S * exp((T/m)*(r-0.5*v*v));
-  double S_cur = 0.0;
-  double S_bar = 0.0;
+  double adjust = exp((T/m)*(r-0.5*v*v));
+  double S_tj1;
+  double S_bar;
+  double S_tj;
   double payoff_sum = 0.0;
 
   for (int i=0; i<num_sims; i++) {
+    S_bar = 0.0;
+    S_tj1 = S;
     for (int j=0; j<m; j++) {
       double gauss_bm = gaussian_box_muller();
-      S_cur = S_adjust * exp(sqrt(v*v*(T/m))*gauss_bm);
-      S_bar += S_cur;
-      S_adjust = S_cur;
+      S_tj = adjust * S_tj1 * exp(sqrt(v*v*(T/m))*gauss_bm);
+      S_bar += S_tj;
+      S_tj1 = S_tj;
     }
     S_bar /= m;
     payoff_sum += std::max(K - S_bar, 0.0);
@@ -121,13 +125,13 @@ int main(int argc, char **argv) {
 
   // Parameters
   //int num_sims = 10000000;   // Number of simulated asset paths
-  int num_sims = 10;
+  int num_sims = 1000;
   double S = 100.0;  // Option price
   double K = 100.0;  // Strike price
   double r = 0.05;   // Risk-free rate (5%)
   double v = 0.2;    // Volatility of the underlying (20%)
   double T = 1.0;    // One year until expiry
-  double m = 1;
+  double m = 5;
 
   // Then we calculate the call/put values via Monte Carlo
   double call_E = call_price_European(num_sims, S, K, r, v, T);
