@@ -7,16 +7,12 @@
 
 const int num_steps = 500000000;
 
-int main(int argc, char *argv[]){
+int main(){
     int num_procs, rank, num;
     int i;
     double sum = 0.0;
     double pi  = 0.0;
     num = num_steps / num_procs;
-
-    MPI_Init(&argc, &argv);
-    MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
-    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
     std::cout << "using " << omp_get_max_threads() << " OpenMP threads" << std::endl;
 
