@@ -1,0 +1,9 @@
+--------------------------------------------------------------------------
+mpiexec was unable to launch the specified application as it could not access
+or execute an executable:
+
+Executable: ./1.hello_world_mpi.exec
+Node: midway214
+
+while attempting to start process rank 0.
+--------------------------------------------------------------------------
