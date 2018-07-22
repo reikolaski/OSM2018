@@ -3,18 +3,18 @@
 # partition on Midway1 please change the --partition option if you want to use 
 # another partition on Midway1
 
-# set the job name to hello-openmp
-#SBATCH --job-name=hello-openmp
+# set the job name to integral-openmp
+#SBATCH --job-name=integral-openmp
 
-# send output to hello-openmp.out
-#SBATCH --output=hello-openmp.out
+# send output to integral-openmp.out
+#SBATCH --output=integral--openmp2.out
 
 # this job requests node
-#SBATCH --ntasks=8
+#SBATCH --ntasks=1
 
 
 # and request 8 cpus per task for OpenMP threads
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=8
 
 # this job will run in the sandyb partition on Midway1
 #SBATCH --partition=sandyb

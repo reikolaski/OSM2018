@@ -12,20 +12,21 @@ double pi(int N)
     int i;
     int count=0;
     double z;
-    int NumThreads = 8;
+    srand(time(0));
     double time = -omp_get_wtime();
     //main loop
+    #pragma omp parallel for reduction(+:count)
     for (i=0; i<N; ++i)
     {
-	 //get random points
-       	 x = (double)random()/RAND_MAX;
-       	 y = (double)random()/RAND_MAX;
-       	 z = sqrt((x*x)+(y*y));
-      	 //check to see if point is in unit circle
-    	 if (z<=1)
-       	 {
-           	count++;
-       	 }
+        //get random points
+        x = (double)random()/RAND_MAX;
+        y = (double)random()/RAND_MAX;
+        z = sqrt((x*x)+(y*y));
+       //check to see if point is in unit circle
+        if (z<=1)
+       	{
+            count++;
+       	}
     }
     time += omp_get_wtime();
     cout << "the solution took " << time << " seconds\n";
